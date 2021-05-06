@@ -8,17 +8,17 @@ import (
 // MyLimit 分页总数 默认为15
 var myLimit = 15
 
-// Admin 当前请求的con
+// 请求的con Map
 var requestMap = map[uint64] *beego.Controller{}
 
 type myPage struct{
 	page 		int 				//当前页
-	maxPage 	int					//最大页数
+	maxPage 	int				//最大页数
 	href 		string 				//链接
 	result 		string 				//结果
-	beegoCon 	*beego.Controller	//当前请求的控制器
+	beegoCon 	*beego.Controller		//当前请求的控制器
 	start 		int 				//中间几页开始位置
-	end			int 				//中间几页结尾位置
+	end		int 				//中间几页结尾位置
 	before 		int 				//当前页之前有几页
 	after		int 				//当前页之后有几页
 	pageStr 	string 				//url中 page 值
@@ -32,7 +32,7 @@ func Page(pageCount int) (result string){
 	//当前最大页
 	maxPage := pageCount / myLimit
 	if pageCount % myLimit != 0{
-		//go 整形 除以 整形 会向下取整
+		//go语言 整形 除以 整形 会向下取整
 		maxPage ++
 	}
 	if maxPage < 2 {
